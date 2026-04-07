@@ -469,9 +469,54 @@ src="https://www.facebook.com/tr?id=3341618962646020&ev=PageView&noscript=1"
             <label class="form-page-label"><input type="checkbox" name="itens_tematicos" value="Dia dos Pais"> Dia dos Pais – Ideias carinhosas para surpreender.</label>
         </div>
 
-       <a href="https://seulink.com">
-  <button>Enviar</button>
-</a>
+
+            
+    <button id="btnEnviar">Enviar</button>
+
+<div id="alerta" class="hidden">
+  <div class="box">
+    ⓘ Aguarde<br>
+    <small>Redirecionando para o carrinho...</small>
+  </div>
+</div>
+
+<style>
+#alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  z-index: 9999;
+}
+
+.box {
+  background: #cfe8f6;
+  color: #1a3d5d;
+  padding: 15px 25px;
+  border-radius: 6px;
+  font-family: Arial;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+<script>
+document.getElementById("btnEnviar").addEventListener("click", function(e) {
+  // mostra o alerta
+  document.getElementById("alerta").classList.remove("hidden");
+
+  // simula envio + redirecionamento
+  setTimeout(() => {
+    window.location.href = "https://seulink.com";
+  }, 1500);
+});
+</script>
+
+            
     </form>
 </section>
 </main>
