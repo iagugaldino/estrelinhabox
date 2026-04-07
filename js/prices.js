@@ -1,0 +1,6 @@
+(function(){var fnGetNotLoadedIds=function(){var ids=[];document.querySelectorAll('[price-loader-id]:not([price-loaded])').forEach($el=>{ids.push($el.getAttribute('price-loader-id'))});return ids}
+var fnLoad=function(ids){if(ids.length===0){return}
+$.get({'url':'/ecommerce/prices/items?ids[]='+ids.join('&ids[]='),'success':function(response){var itemPrices=response.data;if(!1===Array.isArray(itemPrices)){itemPrices=[itemPrices]}
+for(var itemPrice of itemPrices){var $price=document.querySelectorAll('[price-loader-id="'+itemPrice.id+'"]');$price.forEach($el=>{var floatPrice=parseFloat(itemPrice.price);var formattedPrice=floatPrice.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}).trim();var originalPrice=parseFloat($el.getAttribute("price"))
+if(originalPrice!==floatPrice){var fromattedOriginal=originalPrice.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}).trim();$el.previousElementSibling.innerHTML=`<s>de:${fromattedOriginal}<br> </s>`}
+$el.innerHTML=formattedPrice;$el.setAttribute("price",floatPrice);$el.setAttribute("price-loaded",'1')})}}})};fnLoad(fnGetNotLoadedIds());CanopusEventCenter.addListener('Showcase.InfiniteScroll.Loaded',function(){setTimeout(function(){fnLoad(fnGetNotLoadedIds())},100)})})()
